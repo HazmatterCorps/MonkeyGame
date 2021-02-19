@@ -5,26 +5,12 @@ var bananasGroup, bananas, banana, bananaImage;
   
 var obstaclesGroup, obstacles, obstacle, obstacleImage;  
 
-  
- 
-
-
-
-
-
 var ground;
-
-
-
-
-
-
-
 
 
 function preload(){
 
-    monkey_running =            loadAnimation("sprite_0.png","sprite_1.png","sprite_2.png","sprite_3.png","sprite_4.png","sprite_5.png","sprite_6.png","sprite_7.png","sprite_8.png")
+  monkey_running = loadAnimation("sprite_0.png","sprite_1.png","sprite_2.png","sprite_3.png","sprite_4.png","sprite_5.png","sprite_6.png","sprite_7.png","sprite_8.png")
 
   
 bananaImage = loadImage("banana.png")
@@ -46,7 +32,7 @@ function setup() {
   
 //create banana and obstacle groups
   bananasGroup = createGroup();
-  obstacleGroup = createGroup();  
+  obstaclesGroup = createGroup();  
 
 //set monkey collider
   monkey.setCollider("rectangle",0,0,monkey.width,monkey.height);
@@ -59,7 +45,7 @@ function draw() {
   background("white");
 
   spawnBananas(); 
-  spawnobstacles(); 
+  spawnObstacles(); 
 
   
     if(keyDown("space") && monkey.y >= 159) {
@@ -85,10 +71,27 @@ function draw() {
      //assign lifetime to the variable
     banana.lifetime = 200;
     
-    //add each cloud to the group
+    //add each banana to the group
     bananasGroup.add(banana);
   }
   
+}
+
+function spawnObstacles() {
+  //write code here to spawn the obstacles
+  if (frameCount % 200 === 0) {
+    var obstacle = createSprite(600,325,40,40);
+    obstacle.addImage(obstacleImage);
+    obstacle.scale = 0.1;
+    obstacle.velocityX = -12;
+    
+     //assign lifetime to the variable
+    obstacle.lifetime = 200;
+    
+    //add each obstacle to the group
+    obstaclesGroup.add(obstacle);
+  }
+
 }
   
 
